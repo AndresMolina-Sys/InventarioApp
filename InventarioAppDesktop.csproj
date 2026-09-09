@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <Version>1.4.0</Version>
+    <Product>InventarioApp</Product>
+    <Description>Sistema de inventario local (demo)</Description>
+    <Copyright>Copyright © 2026 InventarioApp</Copyright>
+  </PropertyGroup>
+
+<ItemGroup>
+    <Resource Include="Resources\InventarioAppLogo.png" />
+    <Resource Include="Resources\InventarioApp.ico" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <ApplicationIcon>Resources\InventarioApp.ico</ApplicationIcon>
+    <AssemblyName>InventarioAppDesktop</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.29" />
+  </ItemGroup>
+
+</Project>

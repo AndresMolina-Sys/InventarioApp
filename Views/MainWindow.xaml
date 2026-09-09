@@ -1,0 +1,311 @@
+﻿<Window x:Class="InventarioAppDesktop.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:InventarioAppDesktop.Views"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Title="" Height="820" Width="1280"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        MinHeight="550" MinWidth="940"
+        WindowStyle="None"
+        Icon="pack://application:,,,/Resources/InventarioApp.ico"
+        Background="{DynamicResource MaterialDesignPaper}">
+
+        <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="32" GlassFrameThickness="0" ResizeBorderThickness="6"/>
+    </shell:WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <Style x:Key="TitleBarButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="46"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Root" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="#42A5F5"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Root" Property="Background" Value="#0D47A1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*" MinWidth="250" MaxWidth="400"/>
+            <ColumnDefinition Width="85*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Custom Title Bar (spans both columns) -->
+        <Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#1976D2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+                <Button x:Name="MinimizeButton" Style="{StaticResource TitleBarButtonStyle}" Click="Minimize_Click">
+                    <md:PackIcon Kind="WindowMinimize" Width="14" Height="14"/>
+                </Button>
+                <Button x:Name="MaximizeButton" Style="{StaticResource TitleBarButtonStyle}" Click="Maximize_Click">
+                    <md:PackIcon Kind="WindowMaximize" Width="14" Height="14"/>
+                </Button>
+                <Button Style="{StaticResource TitleBarButtonStyle}" Click="Close_Click" Background="#1976D2">
+                    <md:PackIcon Kind="Close" Width="14" Height="14"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <!-- Sidebar -->
+        <md:Card Grid.Row="1" Grid.Column="0" Padding="0"
+                 Background="{StaticResource InventarioPrimary}"
+                >
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="0,28,0,8">
+                    <TextBlock Text="InventarioApp" FontSize="34" MaxWidth="280"
+                               FontFamily="Century Gothic" FontStyle="Italic"
+                               Foreground="White" HorizontalAlignment="Center" Margin="0,8,0,0"
+                               TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"/>
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Bottom" Margin="16,0,16,20">
+                    <Button Command="{Binding NavigateCommand}" CommandParameter="perfil"
+                            Background="#AAFFFFFF" HorizontalAlignment="Stretch"
+                            Padding="0" Cursor="Hand" BorderThickness="0" Margin="0,0,0,8"
+                            MinHeight="40">
+                        <StackPanel Orientation="Horizontal" Margin="12,10">
+                            <md:PackIcon Kind="Account" Width="20" Height="20"
+                                         Foreground="#99FFFFFF" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <TextBlock Text="{Binding NombreUsuario}" Foreground="White"
+                                       FontSize="13" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding LogoutCommand}"
+                            Background="#DC3545"
+                            HorizontalAlignment="Stretch" MinHeight="40" Padding="12,10" Cursor="Hand">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <md:PackIcon Kind="Logout" Width="20" Height="20" Foreground="White" Margin="0,0,10,0"
+                                         VerticalAlignment="Center"/>
+                            <TextBlock Text="Cerrar Sesión" Foreground="White" FontSize="13" FontWeight="SemiBold"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Top" Margin="12,24,12,0">
+                    <RadioButton IsChecked="True"
+                                 Command="{Binding NavigateCommand}" CommandParameter="dashboard"
+                                 Foreground="White" Background="Transparent" BorderThickness="0"
+                                 Padding="16,18" Margin="0,2" Cursor="Hand">
+                        <RadioButton.Style>
+                            <Style TargetType="RadioButton">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="RadioButton">
+                                            <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                                    Padding="{TemplateBinding Padding}" CornerRadius="6">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Bd" Property="Background" Value="#33FFFFFF"/>
+                                                </Trigger>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter TargetName="Bd" Property="Background" Value="#44FFFFFF"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </RadioButton.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="ViewDashboard" Width="28" Height="28" Margin="0,0,12,0"/>
+                            <TextBlock Text="Inicio" VerticalAlignment="Center" FontSize="16"
+                                       FontFamily="Century Gothic" FontStyle="Italic"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Command="{Binding NavigateCommand}" CommandParameter="articulos"
+                                 Foreground="White" Background="Transparent" BorderThickness="0"
+                                 Padding="16,18" Margin="0,2" Cursor="Hand">
+                        <RadioButton.Style>
+                            <Style TargetType="RadioButton">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="RadioButton">
+                                            <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                                    Padding="{TemplateBinding Padding}" CornerRadius="6">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Bd" Property="Background" Value="#33FFFFFF"/>
+                                                </Trigger>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter TargetName="Bd" Property="Background" Value="#44FFFFFF"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </RadioButton.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="PackageVariant" Width="28" Height="28" Margin="0,0,12,0"/>
+                            <TextBlock Text="Artículos" VerticalAlignment="Center" FontSize="16"
+                                       FontFamily="Century Gothic" FontStyle="Italic"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Command="{Binding NavigateCommand}" CommandParameter="categorias"
+                                 Foreground="White" Background="Transparent" BorderThickness="0"
+                                 Padding="16,18" Margin="0,2" Cursor="Hand">
+                        <RadioButton.Style>
+                            <Style TargetType="RadioButton">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="RadioButton">
+                                            <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                                    Padding="{TemplateBinding Padding}" CornerRadius="6">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Bd" Property="Background" Value="#33FFFFFF"/>
+                                                </Trigger>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter TargetName="Bd" Property="Background" Value="#44FFFFFF"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </RadioButton.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="TagMultiple" Width="28" Height="28" Margin="0,0,12,0"/>
+                            <TextBlock Text="Categorías" VerticalAlignment="Center" FontSize="16"
+                                       FontFamily="Century Gothic" FontStyle="Italic"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Visibility="{Binding EsAdmin, Converter={StaticResource BoolToVis}}"
+                                 Command="{Binding NavigateCommand}" CommandParameter="usuarios"
+                                 Foreground="White" Background="Transparent" BorderThickness="0"
+                                 Padding="16,18" Margin="0,2" Cursor="Hand">
+                        <RadioButton.Style>
+                            <Style TargetType="RadioButton">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="RadioButton">
+                                            <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                                    Padding="{TemplateBinding Padding}" CornerRadius="6">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Bd" Property="Background" Value="#33FFFFFF"/>
+                                                </Trigger>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter TargetName="Bd" Property="Background" Value="#44FFFFFF"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </RadioButton.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="AccountGroup" Width="28" Height="28" Margin="0,0,12,0"/>
+                            <TextBlock Text="Usuarios" VerticalAlignment="Center" FontSize="16"
+                                       FontFamily="Century Gothic" FontStyle="Italic"/>
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
+            </DockPanel>
+        </md:Card>
+
+        <!-- Content Area -->
+        <ScrollViewer x:Name="ContentScrollViewer" Grid.Row="1" Grid.Column="1" Background="{DynamicResource MaterialDesignPaper}"
+                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                      Focusable="True">
+        <ContentControl Background="{DynamicResource MaterialDesignPaper}">
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CurrentPage}" Value="dashboard">
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <local:DashboardPage DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding CurrentPage}" Value="articulos">
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <local:ArticulosPage DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding CurrentPage}" Value="articulos_ficha">
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <local:ArticulosPage DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding CurrentPage}" Value="categorias">
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <local:CategoriasPage DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding CurrentPage}" Value="usuarios">
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <local:UsuariosPage DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding CurrentPage}" Value="perfil">
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <local:UserProfilePage DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+        </ScrollViewer>
+    </Grid>
+</Window>
