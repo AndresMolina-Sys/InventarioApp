@@ -18,7 +18,6 @@ Sistema de inventario de escritorio para Windows (WPF). Versión demo de portafo
 - Gestión de usuarios y roles con autenticación
 - Cambio de contraseña obligatorio en primer inicio
 - Datos de demostración incluidos (3 categorías, 15 productos)
-- Instalador Windows (Inno Setup)
 
 ## Estructura del proyecto
 
@@ -29,7 +28,7 @@ Sistema de inventario de escritorio para Windows (WPF). Versión demo de portafo
 ├── Views/         # Ventanas y páginas XAML
 ├── Services/      # Login, caché, logging, semillas demo
 ├── Resources/     # Logo e icono genéricos
-└── Installer/     # Script Inno Setup, seed SQL y utilidades de build
+└── seed_demo.sql  # Datos ficticios (3 categorías, 15 productos)
 ```
 
 ## Requisitos
@@ -54,10 +53,10 @@ En el primer arranque la aplicación crea la base local (`inventario_demo.db` ju
 
 ## Datos demo
 
-El script `Installer/seed_demo.sql` contiene los mismos datos que la app siembra automáticamente (3 categorías y 15 productos ficticios). Para restablecerlos manualmente sobre una base existente:
+El script `seed_demo.sql` contiene los mismos datos que la app siembra automáticamente (3 categorías y 15 productos ficticios). Para restablecerlos manualmente sobre una base existente:
 
 ```powershell
-sqlite3 inventario_demo.db < Installer/seed_demo.sql
+sqlite3 inventario_demo.db < seed_demo.sql
 ```
 
 ## Licencia

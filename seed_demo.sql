@@ -4,7 +4,7 @@
 --  Services/DemoSeedService.cs cuando la base local está vacía).
 --
 -- Uso (desde la raíz del proyecto):
---   sqlite3 inventario_demo.db < Installer/seed_demo.sql
+--   sqlite3 inventario_demo.db < seed_demo.sql
 --
 -- NOTA: restablece los datos demo (borra las categorías y artículos
 -- existentes antes de insertar). No usar sobre una base con datos reales.

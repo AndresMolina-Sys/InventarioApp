@@ -4,7 +4,7 @@ using InventarioAppDesktop.Models;
 namespace InventarioAppDesktop.Services;
 
 // Datos ficticios para la demo local: 3 categorías y 15 productos.
-// Son los mismos datos del script Installer/seed_demo.sql; aquí se
+// Son los mismos datos del script seed_demo.sql; aquí se
 // siembran automáticamente cuando la base local está vacía.
 public static class DemoSeedService
 {
