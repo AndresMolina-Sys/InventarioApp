@@ -40,14 +40,17 @@ Sistema de inventario de escritorio para Windows (WPF). Versión demo de portafo
 ## Cómo ejecutar
 
 ```powershell
-# Compilar
-dotnet build
+# 1. Clonar el repositorio
+git clone https://github.com/AndresMolina-Sys/InventarioApp.git
+cd InventarioApp
 
-# Ejecutar
+# 2. Ejecutar (compila automáticamente la primera vez)
 dotnet run
 ```
 
-En el primer arranque la aplicación crea la base local, genera una cuenta `admin` con contraseña temporal (la muestra en pantalla y deberá cambiarse al iniciar sesión) y siembra los datos de demostración.
+Alternativa: abrir `InventarioAppDesktop.csproj` en Visual Studio 2022 y presionar F5.
+
+En el primer arranque la aplicación crea la base local (`inventario_demo.db` junto al ejecutable), muestra una cuenta `admin` con contraseña temporal (deberá cambiarse al iniciar sesión) y siembra los datos de demostración.
 
 ## Datos demo
 
