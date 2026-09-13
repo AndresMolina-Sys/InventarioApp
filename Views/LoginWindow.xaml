@@ -34,10 +34,10 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Root" Property="Background" Value="#42A5F5"/>
+                                <Setter TargetName="Root" Property="Background" Value="#FF9800"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Root" Property="Background" Value="#0D47A1"/>
+                                <Setter TargetName="Root" Property="Background" Value="#E65100"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -53,7 +53,7 @@
         </Grid.RowDefinitions>
 
         <!-- Custom Title Bar (solo botones) -->
-        <Grid Grid.Row="0" Background="#1976D2">
+        <Grid Grid.Row="0" Background="#EF6C00">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -65,7 +65,7 @@
                 <Button x:Name="MaximizeButton" Style="{StaticResource TitleBarButtonStyle}" Click="Maximize_Click">
                     <md:PackIcon Kind="WindowMaximize" Width="14" Height="14"/>
                 </Button>
-                <Button Style="{StaticResource TitleBarButtonStyle}" Click="Close_Click" Background="#1976D2">
+                <Button Style="{StaticResource TitleBarButtonStyle}" Click="Close_Click" Background="#EF6C00">
                     <md:PackIcon Kind="Close" Width="14" Height="14"/>
                 </Button>
             </StackPanel>

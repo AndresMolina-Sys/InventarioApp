@@ -8,13 +8,13 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Red.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.LightBlue.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Orange.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Orange.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <Color x:Key="InventarioPrimaryColor">#1976D2</Color>
+            <Color x:Key="InventarioPrimaryColor">#EF6C00</Color>
             <SolidColorBrush x:Key="InventarioPrimary" Color="{StaticResource InventarioPrimaryColor}"/>
-            <SolidColorBrush x:Key="InventarioPrimaryDark" Color="#0D47A1"/>
+            <SolidColorBrush x:Key="InventarioPrimaryDark" Color="#E65100"/>
 
             <SolidColorBrush x:Key="MaterialDesignBody" Color="#1C1C1E"/>
             <SolidColorBrush x:Key="MaterialDesignBodyLight" Color="#555555"/>
