@@ -93,7 +93,7 @@ public partial class CategoriasPage : UserControl
                 "fecha" => _sortDetFechaAsc ? "v" : "^",
                 _ => "v"
             };
-            tb.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#C00000"));
+            tb.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EF6C00"));
         }
         else
         {
